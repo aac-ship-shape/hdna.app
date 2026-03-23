@@ -42,7 +42,7 @@
 </head>
 <body>
   <h1>HDNA.app</h1>
-  <p><strong>Human Designed, Native AI</strong> — a mock presentation of a two-stage recommendation and profiling system for transition from upskill to hAI-skill.</p>
+  <p><strong>Human Designed, Native AI</strong> — a mock presentation of a two-stage recommendation and profiling ML system for transition from upskill to hAI-skill. Available roles: mechanical engineer, network enigineer, java coder, lab scienitst, teacher.</p>
 
   <div class="card">
     <h2>Try a sample learner background</h2>
@@ -167,14 +167,14 @@
 
       result.innerHTML = `
         <div class="card">
-          <h2>Sample learner input</h2>
+          <h2>Upskills</h2>
           <p><strong>Background:</strong> ${data.background}</p>
           <p><strong>Qualifications:</strong> ${data.qualifications}</p>
           <p><strong>Goal:</strong> ${data.goal}</p>
         </div>
 
         <div class="card">
-          <h2>Mock output</h2>
+          <h2>hAI skills</h2>
           <p><strong>Suggested transition pathways:</strong></p>
           <ol>
             ${data.pathways.map(item => `<li>${item}</li>`).join("")}
