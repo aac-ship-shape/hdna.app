@@ -32,9 +32,11 @@
       background: white;
       cursor: pointer;
     }
-    #result {
-      margin-top: 12px;
-      font-weight: bold;
+    h1, h2, h3 {
+      margin-bottom: 8px;
+    }
+    ul, ol {
+      margin-top: 6px;
     }
   </style>
 </head>
@@ -43,54 +45,147 @@
   <p><strong>Human Designed, Native AI</strong> — a mock presentation of a two-stage recommendation and profiling system for transition from upskill to hAI-skill.</p>
 
   <div class="card">
-    <h2>Try a simple mock</h2>
+    <h2>Try a sample learner background</h2>
     <label for="background"><strong>Background</strong></label><br>
-    <input id="background" type="text" placeholder="e.g. java coder">
+    <input id="background" type="text" placeholder="e.g. network engineer">
     <br>
     <button onclick="recommendRole()">Generate mock output</button>
-
-    <div id="result"></div>
   </div>
 
+  <div id="result"></div>
+
   <script>
-  function recommendRole() {
-    const input = document.getElementById("background").value.trim().toLowerCase();
-    const result = document.getElementById("result");
+    function recommendRole() {
+      const input = document.getElementById("background").value.trim().toLowerCase();
+      const result = document.getElementById("result");
 
-    const mappings = {
-      "java coder": `
-        <p><strong>Profile summary:</strong> strong software logic, debugging and backend development capability</p>
-        <p><strong>Suggested transition pathway:</strong> ML engineer</p>
-        <p><strong>Recommended next steps:</strong> Python, supervised learning, model evaluation</p>
-      `,
-      "mechanical engineer": `
-        <p><strong>Profile summary:</strong> strong systems thinking, modelling and quantitative reasoning</p>
-        <p><strong>Suggested transition pathway:</strong> Predictive maintenance analyst</p>
-        <p><strong>Recommended next steps:</strong> Python for technical workflows, regression, time-series forecasting</p>
-      `,
-      "lab scientist": `
-        <p><strong>Profile summary:</strong> strong analytical, experimental and reporting capability</p>
-        <p><strong>Suggested transition pathway:</strong> AI-assisted research analyst</p>
-        <p><strong>Recommended next steps:</strong> Python, classification, data analysis, model interpretation</p>
-      `,
-      "network engineer": `
-        <p><strong>Profile summary:</strong> strong systems, infrastructure and troubleshooting capability</p>
-        <p><strong>Suggested transition pathway:</strong> AI infrastructure specialist</p>
-        <p><strong>Recommended next steps:</strong> Python, Linux automation, ML fundamentals, model deployment basics</p>
-      `,
-      "teacher": `
-        <p><strong>Profile summary:</strong> strong communication, planning and learner support capability</p>
-        <p><strong>Suggested transition pathway:</strong> AI learning designer</p>
-        <p><strong>Recommended next steps:</strong> prompt design, learning analytics, instructional AI tools</p>
-      `
-    };
+      const mappings = {
+        "mechanical engineer": {
+          background: "Mechanical engineering, 8 years",
+          qualifications: "Mathematics, design",
+          goal: "Move into AI-supported energy systems",
+          pathways: [
+            "Predictive maintenance analytics",
+            "Digital energy modelling",
+            "AI-assisted engineering analysis"
+          ],
+          steps: [
+            "Python for technical workflows",
+            "Supervised learning fundamentals",
+            "Regression and classification for engineering data",
+            "Time-series forecasting",
+            "Model evaluation and uncertainty interpretation"
+          ]
+        },
+        "network engineer": {
+          background: "Network engineering, 8 years",
+          qualifications: "Enterprise networking, infrastructure operations",
+          goal: "Move into AI infrastructure and intelligent systems support",
+          pathways: [
+            "AI infrastructure specialist",
+            "ML platform operations analyst",
+            "Intelligent network automation engineer"
+          ],
+          steps: [
+            "Python for automation",
+            "Linux and cloud fundamentals",
+            "ML fundamentals",
+            "Model deployment basics",
+            "Monitoring, observability and reliability in AI systems"
+          ]
+        },
+        "java coder": {
+          background: "Java software development, 6 years",
+          qualifications: "Object-oriented programming, backend systems",
+          goal: "Move into machine learning engineering",
+          pathways: [
+            "ML engineer",
+            "AI applications developer",
+            "Model integration engineer"
+          ],
+          steps: [
+            "Python for machine learning",
+            "Supervised learning fundamentals",
+            "Data preprocessing and feature engineering",
+            "Model evaluation",
+            "Deployment pipelines for ML systems"
+          ]
+        },
+        "lab scientist": {
+          background: "Laboratory science, 7 years",
+          qualifications: "Scientific analysis, reporting, data interpretation",
+          goal: "Move into AI-assisted scientific research support",
+          pathways: [
+            "AI-assisted research analyst",
+            "Scientific data analyst",
+            "ML-supported diagnostics specialist"
+          ],
+          steps: [
+            "Python for scientific data analysis",
+            "Classification and regression methods",
+            "Data visualisation",
+            "Model interpretation",
+            "AI tools for scientific workflows"
+          ]
+        },
+        "teacher": {
+          background: "Teaching and curriculum delivery, 10 years",
+          qualifications: "Lesson planning, learner support, assessment",
+          goal: "Move into AI-enhanced learning design",
+          pathways: [
+            "AI learning designer",
+            "Educational technology specialist",
+            "Learning analytics coordinator"
+          ],
+          steps: [
+            "Prompt design for education",
+            "Learning analytics fundamentals",
+            "AI tools for content development",
+            "Evaluation of AI-supported learning",
+            "Ethics of AI in education"
+          ]
+        }
+      };
 
-    result.innerHTML = mappings[input] || `
-      <p><strong>Profile summary:</strong> transferable domain capability detected</p>
-      <p><strong>Suggested transition pathway:</strong> AI-enabled domain specialist</p>
-      <p><strong>Recommended next steps:</strong> Python, ML fundamentals, model evaluation</p>
-    `;
-  }
-</script>
+      const data = mappings[input] || {
+        background: input ? input : "Unspecified background",
+        qualifications: "Transferable professional experience detected",
+        goal: "Move into an AI-enabled domain role",
+        pathways: [
+          "AI-enabled domain specialist",
+          "Applied AI support analyst",
+          "Hybrid human-AI workflow coordinator"
+        ],
+        steps: [
+          "Python fundamentals",
+          "ML fundamentals",
+          "Data analysis basics",
+          "Model evaluation",
+          "AI workflow tools"
+        ]
+      };
+
+      result.innerHTML = `
+        <div class="card">
+          <h2>Sample learner input</h2>
+          <p><strong>Background:</strong> ${data.background}</p>
+          <p><strong>Qualifications:</strong> ${data.qualifications}</p>
+          <p><strong>Goal:</strong> ${data.goal}</p>
+        </div>
+
+        <div class="card">
+          <h2>Mock output</h2>
+          <p><strong>Suggested transition pathways:</strong></p>
+          <ol>
+            ${data.pathways.map(item => `<li>${item}</li>`).join("")}
+          </ol>
+          <p><strong>Recommended next learning steps:</strong></p>
+          <ol>
+            ${data.steps.map(item => `<li>${item}</li>`).join("")}
+          </ol>
+        </div>
+      `;
+    }
+  </script>
 </body>
 </html>
