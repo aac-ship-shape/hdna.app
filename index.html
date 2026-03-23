@@ -5,10 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HDNA.app</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; line-height: 1.5; }
-    .card { border: 1px solid #ccc; border-radius: 10px; padding: 16px; margin: 16px 0; }
-    h1, h2 { margin-bottom: 8px; }
-    .btn { display: inline-block; padding: 10px 14px; border: 1px solid #333; border-radius: 8px; text-decoration: none; color: #111; }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.5;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    input {
+      width: 100%;
+      max-width: 420px;
+      padding: 10px;
+      margin: 8px 0 12px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 14px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 12px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -16,30 +43,30 @@
   <p><strong>Human Designed, Native AI</strong> — a mock presentation of a two-stage recommendation and profiling system for transition from upskill to hAI-skill.</p>
 
   <div class="card">
-    <h2>Sample learner input</h2>
-    <p><strong>Background:</strong> Mechanical engineering, 8 years</p>
-    <p><strong>Qualifications:</strong> Mathematics, design</p>
-    <p><strong>Goal:</strong> Move into AI-supported energy systems</p>
+    <h2>Try a simple mock</h2>
+    <label for="background"><strong>Background</strong></label><br>
+    <input id="background" type="text" placeholder="e.g. java coder">
+    <br>
+    <button onclick="recommendRole()">Generate mock output</button>
+
+    <div id="result"></div>
   </div>
 
-  <div class="card">
-    <h2>Mock output</h2>
-    <p><strong>Suggested transition pathways:</strong></p>
-    <ol>
-      <li>Predictive maintenance analytics</li>
-      <li>Digital energy modelling</li>
-      <li>AI-assisted engineering analysis</li>
-    </ol>
-    <p><strong>Recommended next learning steps:</strong></p>
-    <ol>
-      <li>Python for technical workflows</li>
-      <li>Supervised learning fundamentals</li>
-      <li>Regression and classification for engineering data</li>
-      <li>Time-series forecasting</li>
-      <li>Model evaluation and uncertainty interpretation</li>
-    </ol>
-  </div>
+  <script>
+    function recommendRole() {
+      const input = document.getElementById("background").value.trim().toLowerCase();
+      const result = document.getElementById("result");
 
-  <p><a class="btn" href="#">Notebook demo coming next</a></p>
+      const mappings = {
+        "java coder": "Suggested transition pathway: ML engineer",
+        "mechanical engineer": "Suggested transition pathway: Predictive maintenance analyst",
+        "lab scientist": "Suggested transition pathway: AI-assisted research analyst",
+        "network engineer": "Suggested transition pathway: AI infrastructure specialist",
+        "teacher": "Suggested transition pathway: AI learning designer"
+      };
+
+      result.textContent = mappings[input] || "Suggested transition pathway: AI-enabled domain specialist";
+    }
+  </script>
 </body>
 </html>
