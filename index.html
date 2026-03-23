@@ -53,20 +53,44 @@
   </div>
 
   <script>
-    function recommendRole() {
-      const input = document.getElementById("background").value.trim().toLowerCase();
-      const result = document.getElementById("result");
+  function recommendRole() {
+    const input = document.getElementById("background").value.trim().toLowerCase();
+    const result = document.getElementById("result");
 
-      const mappings = {
-        "java coder": "Suggested transition pathway: ML engineer",
-        "mechanical engineer": "Suggested transition pathway: Predictive maintenance analyst",
-        "lab scientist": "Suggested transition pathway: AI-assisted research analyst",
-        "network engineer": "Suggested transition pathway: AI infrastructure specialist",
-        "teacher": "Suggested transition pathway: AI learning designer"
-      };
+    const mappings = {
+      "java coder": `
+        <p><strong>Profile summary:</strong> strong software logic, debugging and backend development capability</p>
+        <p><strong>Suggested transition pathway:</strong> ML engineer</p>
+        <p><strong>Recommended next steps:</strong> Python, supervised learning, model evaluation</p>
+      `,
+      "mechanical engineer": `
+        <p><strong>Profile summary:</strong> strong systems thinking, modelling and quantitative reasoning</p>
+        <p><strong>Suggested transition pathway:</strong> Predictive maintenance analyst</p>
+        <p><strong>Recommended next steps:</strong> Python for technical workflows, regression, time-series forecasting</p>
+      `,
+      "lab scientist": `
+        <p><strong>Profile summary:</strong> strong analytical, experimental and reporting capability</p>
+        <p><strong>Suggested transition pathway:</strong> AI-assisted research analyst</p>
+        <p><strong>Recommended next steps:</strong> Python, classification, data analysis, model interpretation</p>
+      `,
+      "network engineer": `
+        <p><strong>Profile summary:</strong> strong systems, infrastructure and troubleshooting capability</p>
+        <p><strong>Suggested transition pathway:</strong> AI infrastructure specialist</p>
+        <p><strong>Recommended next steps:</strong> Python, Linux automation, ML fundamentals, model deployment basics</p>
+      `,
+      "teacher": `
+        <p><strong>Profile summary:</strong> strong communication, planning and learner support capability</p>
+        <p><strong>Suggested transition pathway:</strong> AI learning designer</p>
+        <p><strong>Recommended next steps:</strong> prompt design, learning analytics, instructional AI tools</p>
+      `
+    };
 
-      result.textContent = mappings[input] || "Suggested transition pathway: AI-enabled domain specialist";
-    }
-  </script>
+    result.innerHTML = mappings[input] || `
+      <p><strong>Profile summary:</strong> transferable domain capability detected</p>
+      <p><strong>Suggested transition pathway:</strong> AI-enabled domain specialist</p>
+      <p><strong>Recommended next steps:</strong> Python, ML fundamentals, model evaluation</p>
+    `;
+  }
+</script>
 </body>
 </html>
